@@ -45,7 +45,7 @@ def parse_user_input(input) -> list:
         exit()
 
 def check_speedy_shipping_has_been_selected(speedy_shipping):
-    if speedy_shipping == 'Y':
+    if speedy_shipping == 'Y' or speedy_shipping == 'y':
         return True
     
     return False
