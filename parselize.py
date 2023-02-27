@@ -30,7 +30,7 @@ def get_input_from_user() -> str:
     print("Please enter parcel dimensions in the form of length, breadth, height.")
     print("To enter multiple parcel dimensions, please enter the next parcel dimensions seperated by a space. For example - 1,2,3 4,5,6.")
     user_input = input("Parcel Dimensions: ")
-    print("If you would like to add speedy shipping to your order, please enter Y below. If you dont please enter N")
+    print("If you would like to add speedy shipping to your order, please enter Y below.")
     speedy_shipping = input("Speedy shipping: ")
     return user_input, speedy_shipping
     
@@ -44,12 +44,21 @@ def parse_user_input(input) -> list:
         print("Please enter only numbers as parcel dimensions!")
         exit()
 
+def check_speedy_shipping_has_been_selected(speedy_shipping):
+    if speedy_shipping == 'Y':
+        return True
+    
+    return False
+
 def display_output(parcel_dimensions, parcel_type, cost) -> None:
     print("Parcel type for dimensions {} is {}".format(parcel_dimensions, parcel_type))
     print("Shipping cost: {}".format(cost))
 
 def main():
+    total_cost_of_shipping = 0
+    
     input, speedy_shipping = get_input_from_user()
+    is_speedy_shipping = check_speedy_shipping_has_been_selected(speedy_shipping)
     parcel_dimensions = parse_user_input(input)
 
     for parcel_dimension in parcel_dimensions:
@@ -64,6 +73,10 @@ def main():
         parcel_type = parcel.return_parcel_type(max_dimension)
         cost = parcel.calculate_cost_of_shipping(parcel_type)
         display_output(parcel_dimension, parcel_type, cost)
+        total_cost_of_shipping += cost
+
+    if is_speedy_shipping:
+        print("Speedy shipping cost is {}".format(total_cost_of_shipping))
 
 if __name__ == "__main__":
     main()
