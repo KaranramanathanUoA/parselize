@@ -26,13 +26,15 @@ class Parcel:
         return PARCEL_TYPE_TO_COST_MAPPING.get(parcel_type)
 
 
-def get_input_from_user():
+def get_input_from_user() -> str:
     print("Please enter parcel dimensions in the form of length, breadth, height.")
     print("To enter multiple parcel dimensions, please enter the next parcel dimensions seperated by a space. For example - 1,2,3 4,5,6.")
     user_input = input("Parcel Dimensions: ")
-    return user_input
+    print("If you would like to add speedy shipping to your order, please enter Y below. If you dont please enter N")
+    speedy_shipping = input("Speedy shipping: ")
+    return user_input, speedy_shipping
     
-def parse_user_input(input):
+def parse_user_input(input) -> list:
     try:
         # split by space to check for multiple parcels
         parcel_dimension = input.split(" ")
@@ -42,12 +44,12 @@ def parse_user_input(input):
         print("Please enter only numbers as parcel dimensions!")
         exit()
 
-def display_output(parcel_dimensions, parcel_type, cost):
+def display_output(parcel_dimensions, parcel_type, cost) -> None:
     print("Parcel type for dimensions {} is {}".format(parcel_dimensions, parcel_type))
     print("Shipping cost: {}".format(cost))
 
 def main():
-    input = get_input_from_user()
+    input, speedy_shipping = get_input_from_user()
     parcel_dimensions = parse_user_input(input)
 
     for parcel_dimension in parcel_dimensions:
