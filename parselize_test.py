@@ -24,9 +24,17 @@ class ParselizeTests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             parse_user_input(input)
 
-    def test_correct_parcel_type_is_returned_for_valid_dimensions(self):
+    def test_medium_parcel_type_is_returned_for_valid_dimensions(self):
         biggest_dimension = self.parcel.get_biggest_dimension_of_parcel(self.parcel_dimension)
         self.assertEqual(self.parcel.return_parcel_type(biggest_dimension), "Medium")
+
+    def test_XL_parcel_type_is_returned_for_valid_dimensions(self):
+        xl_parcel_dimension = (150,20,50)
+        self.xl_parcel = Parcel(*xl_parcel_dimension)
+        biggest_dimension = self.xl_parcel.get_biggest_dimension_of_parcel(xl_parcel_dimension)
+        self.assertEqual(self.xl_parcel.return_parcel_type(biggest_dimension), "XL")
+
+    
 
 if __name__ == "__main__":
     unittest.main()
