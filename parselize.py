@@ -22,6 +22,9 @@ class Parcel:
         if (biggest_dimension < 10):
             return "Small"
 
+    def calculate_cost_of_shipping(self, parcel_type: str) -> int:
+        return PARCEL_TYPE_TO_COST_MAPPING.get(parcel_type)
+
 
 def get_input_from_user():
     print("Please enter parcel dimensions in the form of length, breadth, height.")
@@ -53,6 +56,7 @@ def main():
 
         max_dimension = parcel.get_biggest_dimension_of_parcel(parcel_dimension)
         parcel_type = parcel.return_parcel_type(max_dimension)
+        cost = parcel.calculate_cost_of_shipping(parcel_type)
 
 if __name__ == "__main__":
     main()
