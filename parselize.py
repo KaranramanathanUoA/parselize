@@ -9,6 +9,20 @@ class Parcel:
     def get_biggest_dimension_of_parcel(self, parcel: tuple) -> float:
         return max(parcel)
 
+    def return_parcel_type(self, biggest_dimension : float) -> str:
+        if (biggest_dimension >= 100):
+            return "XL"
+        
+        if (biggest_dimension < 100 and biggest_dimension > 50):
+            return "Large"
+
+        if (biggest_dimension < 50 and biggest_dimension > 10):
+            return "Medium"
+        
+        if (biggest_dimension < 10):
+            return "Small"
+
+
 def get_input_from_user():
     print("Please enter parcel dimensions in the form of length, breadth, height.")
     print("To enter multiple parcel dimensions, please enter the next parcel dimensions seperated by a space. For example - 1,2,3 4,5,6.")
@@ -38,6 +52,7 @@ def main():
             exit()
 
         max_dimension = parcel.get_biggest_dimension_of_parcel(parcel_dimension)
+        parcel_type = parcel.return_parcel_type(max_dimension)
 
 if __name__ == "__main__":
     main()
