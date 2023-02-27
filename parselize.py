@@ -42,6 +42,10 @@ def parse_user_input(input):
         print("Please enter only numbers as parcel dimensions!")
         exit()
 
+def display_output(parcel_dimensions, parcel_type, cost):
+    print("Parcel type for dimensions {} is {}".format(parcel_dimensions, parcel_type))
+    print("Shipping cost: {}".format(cost))
+
 def main():
     input = get_input_from_user()
     parcel_dimensions = parse_user_input(input)
@@ -57,6 +61,7 @@ def main():
         max_dimension = parcel.get_biggest_dimension_of_parcel(parcel_dimension)
         parcel_type = parcel.return_parcel_type(max_dimension)
         cost = parcel.calculate_cost_of_shipping(parcel_type)
+        display_output(parcel_dimension, parcel_type, cost)
 
 if __name__ == "__main__":
     main()

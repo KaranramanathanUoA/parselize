@@ -34,7 +34,10 @@ class ParselizeTests(unittest.TestCase):
         biggest_dimension = self.xl_parcel.get_biggest_dimension_of_parcel(xl_parcel_dimension)
         self.assertEqual(self.xl_parcel.return_parcel_type(biggest_dimension), "XL")
 
-    
+    def test_correct_shipping_cost_is_calculated_for_medium_parcel(self):
+        parcel_type = "Medium"
+        cost = self.parcel.calculate_cost_of_shipping(parcel_type)
+        self.assertEqual(cost, 8)
 
 if __name__ == "__main__":
     unittest.main()
